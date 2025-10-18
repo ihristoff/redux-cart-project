@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import CardContainer from "./components/CardContainer";
+import Modal from "./components/Modal";
 import { useEffect } from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import {calculateTotals} from './features/cart/cartSlice'
@@ -8,6 +9,7 @@ import {calculateTotals} from './features/cart/cartSlice'
 
 function App() {
     const {cartItems} = useSelector ((state) =>state.cart);
+    const {isOpen} = useSelector((store) => store.modal);
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -17,6 +19,9 @@ function App() {
     return (
     <>
     <main>
+        {isOpen &&  < Modal />}
+      
+
         <Navbar />
         <CardContainer />
 
